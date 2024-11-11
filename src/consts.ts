@@ -11,7 +11,7 @@ export const DATE_FORMAT = "ddd MMM DD YYYY";
 // User profile information
 export const USER_NAME = "Vicrsec";
 export const USER_SITE = "https://frosti.saroprock.com"
-export const USER_AVATAR = "/profile.webp";
+export const USER_AVATAR = "/profile.jpg";
 
 // Server and transition settings
 export const SERVER_URL = "https://demo.saroprock.com";
