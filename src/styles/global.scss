@@ -18,6 +18,18 @@ a {
 .katex-display {
   overflow-x: auto;
 }
+//修改数学公式显示问题
+.katex-html {
+    overflow: visible;
+    // Optional: Adjust padding and margins as needed
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+    
+    // Add additional styles for better display
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2em;
+  }
 
 .medium-zoom-image--opened {
   @apply rounded-xl shadow-xl;
