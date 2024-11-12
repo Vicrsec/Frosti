@@ -1,4 +1,4 @@
-name: Upload to COS
+name: Upload to VPS
 
 on: [push]
 
@@ -32,6 +32,6 @@ jobs:
           REGION: ${{ secrets.REGION }}
         run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
 
-      - name: Upload to COS
+      - name: Upload to VPS
         run: coscmd upload -r -f --delete ./dist/ / --ignore "./.git/*"
 
