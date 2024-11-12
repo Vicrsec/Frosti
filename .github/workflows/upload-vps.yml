@@ -1,6 +1,9 @@
 name: 上传到服务器
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
