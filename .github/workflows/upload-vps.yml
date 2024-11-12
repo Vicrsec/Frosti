@@ -1,0 +1,34 @@
+name: 上传到服务器
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建 Astro 项目
+        run: npm run build
+
+      - name: 设置 SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: 上传到服务器
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR
