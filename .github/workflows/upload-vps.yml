@@ -34,4 +34,4 @@ jobs:
           HOST: ${{ secrets.SERVER_HOST }}
           USER: ${{ secrets.SERVER_USER }}
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
-        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR
+        run: scp -o StrictHostKeyChecking=no -r ./dist/* $USER@$HOST:$TARGET_DIR
