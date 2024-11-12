@@ -29,4 +29,5 @@ jobs:
           HOST: ${{ secrets.SERVER_HOST }}
           USER: ${{ secrets.SERVER_USER }}
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
-        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR
+          PASS: ${{secrets.PASS}}
+        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR -P $PASS
