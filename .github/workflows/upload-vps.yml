@@ -24,10 +24,14 @@ jobs:
       - name: 构建 Astro 项目
         run: npm run build
 
+      - name: 设置 SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: 上传到服务器
         env:
           HOST: ${{ secrets.SERVER_HOST }}
           USER: ${{ secrets.SERVER_USER }}
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
-          PASS: ${{secrets.PASS}}
-        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR -P $PASS
+        run: scp -r ./dist/* $USER@$HOST:$TARGET_DIR
