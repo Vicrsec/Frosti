@@ -50,6 +50,13 @@ export const menuItems = [
         svg: "cube",
         target: "_self",
       }, // Technology category
+      {
+        id: "Math",
+        text: "数值分析",
+        href: "/blog/categories/数值分析",
+        svg: "cube",    
+        target: "_self",
+      }, // Math
     ],
   }, // Blog page with sub-items
   {
