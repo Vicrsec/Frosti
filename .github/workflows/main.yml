@@ -1,6 +1,9 @@
 name: Upload to COS
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
