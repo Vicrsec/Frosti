@@ -1,0 +1,189 @@
+---
+title: "第二章 线性方程组的直接解法"
+description: ""
+pubDate: "Nov 11 2024"
+image: /image/线性方程组直接解法.png
+categories:
+  - 数值分析
+tags:
+  - 线性方程组的直接解法
+---
+import Success from"../../components/blog/success.astro"; 
+
+
+export const ClickableDiv = ({ children }) => (
+  <div style={{ cursor: 'pointer' }}>
+    {children}
+  </div>
+);
+
+
+<h4>1、用列主元消去解方程组。</h4>
+$$
+\begin{cases}
+x_1 + 2x_2 + 3x_3 = 1, \\
+2x_1 + 4x_2 + 5x_3 = 0, \\
+3x_1 + 5x_2 + 6x_3 = 0.
+\end{cases}
+$$
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+增广矩阵表示为：
+
+$$
+[A, b] = \begin{bmatrix} 
+1 & 2 & 3 & | & 1 \\ 
+2 & 4 & 5 & | & 0 \\ 
+3 & 5 & 6 & | & 0 
+\end{bmatrix}
+$$
+
+交换 \( r_1 \) 和 \( r_3 \)：
+
+$$
+\begin{bmatrix}
+3 & 5 & 6 & | & 0 \\
+2 & 4 & 5 & | & 0 \\
+1 & 2 & 3 & | & 1
+\end{bmatrix}
+
+\rightarrow
+
+\begin{bmatrix}
+3 & 5 & 6 & | & 0 \\
+0 & \frac{2}{3} & 1 & | & 0 \\
+0 & \frac{1}{3} & 1 & | & 1
+\end{bmatrix}
+$$
+
+继续消元：
+
+$$
+\begin{bmatrix}
+3 & 5 & 6 & | & 0 \\
+0 & \frac{2}{3} & 1 & | & 0 \\
+0 & 0 & \frac{1}{2} & | & 1
+\end{bmatrix}
+$$
+
+解得：
+
+$$
+x = \begin{bmatrix} 1 \\ -3 \\ 2 \end{bmatrix}
+$$
+</Success>
+</details>
+</ClickableDiv>
+
+<h4>2、利用LU(Doolittle)分解法求解方程组。</h4>
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+1 & 3 & 5 \\
+1 & 3 & 6
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 \\ 4 \\ 5
+\end{bmatrix}
+$$
+
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+$$
+LU = 
+\begin{bmatrix}
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+求解：
+
+$$
+y = 
+\begin{bmatrix}
+2 \\ 2 \\ 1
+\end{bmatrix}, \quad
+x = 
+\begin{bmatrix}
+-1 \\ 0 \\ 1
+\end{bmatrix}
+$$
+</Success>
+</details>
+</ClickableDiv>
+
+<h4>3、计算矩阵的几种常见范数</h4>
+$$
+A = \begin{pmatrix}
+1 & -2 \\
+-3 & 4
+\end{pmatrix}
+$$
+
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+1. **1-范数**（列和最大值）:
+   $$
+   \|A\|_1 = \max(|1| + |-3|, |-2| + |4|) = \max(4, 6) = 6
+   $$
+
+2. **无穷范数**（行和最大值）:
+   $$
+   \|A\|_\infty = \max(|1| + |-2|, |-3| + |4|) = \max(3, 7) = 7
+   $$
+
+3. **2-范数**（谱范数）:
+   $$ 
+   A^TA = \begin{pmatrix} 1 & -2 \\ -3 & 4 \end{pmatrix}^T \begin{pmatrix} 1 & -2 \\ -3 & 4 \end{pmatrix} = \begin{pmatrix} 10 & -14 \\ -14 & 20 \end{pmatrix}
+   $$
+
+   $$
+   \|A\|_2 = \sqrt{15 + \sqrt{221}} \approx 5.46
+   $$
+</Success>
+</details>
+</ClickableDiv>
+
+
+<h4>
+4、A为严格对角占优的充要条件是|a| >(),
+A可以分解为A=L^T(其中L是具有正对角元的下三角阵)的充分必要条件是a>(),
+当a=4时, A的无穷范数为(),A的二条件数为()。
+</h4>
+
+$$
+A = \begin{pmatrix}
+2 & 0 & -1 \\
+0 & 2 & 1 \\
+-1 & 1 & a
+\end{pmatrix}
+$$
+
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+- 2 
+- 1
+- 6
+- 3.732
+</Success>
+</details>
+</ClickableDiv>
