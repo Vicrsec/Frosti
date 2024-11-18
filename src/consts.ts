@@ -57,6 +57,13 @@ export const menuItems = [
         svg: "cube",    
         target: "_self",
       }, // Math
+      {
+        id: "Math",
+        text: "组合数学",
+        href: "/blog/categories/组合数学",
+        svg: "cube",    
+        target: "_self",
+      }, // Math
     ],
   }, // Blog page with sub-items
   {
