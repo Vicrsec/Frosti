@@ -1,0 +1,35 @@
+---
+title: "第四章 非线性方程的数值解法"
+description: ""
+pubDate: "Nov 17 2024"
+image: /image/非线性方程的数值解法.png
+categories:
+  - 数值分析
+tags:
+  - 非线性方程的数值解法
+---
+import Success from "../../../components/blog/success.astro"; 
+
+export const ClickableDiv = ({ children }) => (
+  <div style={{ cursor: 'pointer' }}>
+    {children}
+  </div>
+);
+
+$1、求方程f(x) = x^3 - x - 1 = 0的正根。$
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+1. 确定有根区间 [1, 2].
+2. 取迭代函数，判别收敛性。
+$$
+\varphi(x) = \sqrt[3]{x+1} \\
+映内性：\forall x \in [1, 2], \varphi(x) \in [\sqrt[3]{2}, \sqrt[3]{3}] \subset [1, 2] \\
+压缩性：\varphi'(x) = \frac{1}{3}(x+1)^{-\frac{2}{3}} \\
+\quad\forall x \in [1, 2], \quad |\varphi'(x)| < \frac{1}{3}(1+1)^{-\frac{2}{3}} < 1 \\
+$$
+3. 迭代计算。
+</Success>
+</details>
+</ClickableDiv>

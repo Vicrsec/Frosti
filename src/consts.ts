@@ -4,7 +4,7 @@
 // Site title and description
 export const SITE_LANG = "en";
 export const SITE_TAB = "Frosti";
-export const SITE_TITLE = "Vicrsec 🧊";
+export const SITE_TITLE = "Vicrsec 🗡";
 export const SITE_DESCRIPTION = "A blog template";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
@@ -54,6 +54,13 @@ export const menuItems = [
         id: "Math",
         text: "数值分析",
         href: "/blog/categories/数值分析",
+        svg: "cube",    
+        target: "_self",
+      }, // Math
+      {
+        id: "Math",
+        text: "组合数学",
+        href: "/blog/categories/组合数学",
         svg: "cube",    
         target: "_self",
       }, // Math
