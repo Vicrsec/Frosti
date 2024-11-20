@@ -1,0 +1,35 @@
+---
+title: "SSH 端口转发"
+description: "教你掌握端口转发的三种方式"
+pubDate: "NOV 20 2024"
+image: /image/ToolUse/SSH端口转发.png
+categories:
+  - 工具技巧
+badge: Pin
+tags: 
+  - 网络安全
+---
+import Success from "../../../components/blog/success.astro"; 
+
+## 本地端口转发
+
+### 需求
+我现在有一台有代理功能的主机和一台无代理功能的云端VPS，我的想法是让VPS的流量能够通过我的主机走代理。
+```
+本地主机：
+Clash：10005
+
+远端VPS:
+IP：1.2.3.4
+user: root
+```
+### 步骤
+目的：将远端VPS的10005端口映射到本机10005端口。
+
+1、在本地主机上执行：
+<Success>ssh -R 10005:localhost:10005 -p 29998 root@1.2.3.4</Success>
+
+2、在VPS上执行：
+<Success>proxychains4 curl http://www.google.com</Success>
+
+## <font color = "#749DD6">Continued</font>
