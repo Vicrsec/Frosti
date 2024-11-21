@@ -3,14 +3,14 @@
 
 // Site title and description
 export const SITE_LANG = "en";
-export const SITE_TAB = "Frosti";
+export const SITE_TAB = "Vicrsec";
 export const SITE_TITLE = "Vicrsec 🗡";
-export const SITE_DESCRIPTION = "A blog template";
+export const SITE_DESCRIPTION = "A blog for Vicrsec";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
 // User profile information
 export const USER_NAME = "Vicrsec";
-export const USER_SITE = "https://frosti.saroprock.com"
+export const USER_SITE = "http://www.vicrsec.top/"
 export const USER_AVATAR = "/profile.jpg";
 
 // Server and transition settings
