@@ -1,0 +1,133 @@
+---
+title: "Typora上传文件到COS"
+description: ""
+pubDate: "NOV 20 2024"
+image: /image/ToolUse/SSH端口转发.png
+categories:
+  - 工具技巧
+badge: Pin
+tags: 
+  - 网络安全
+---
+## <font color = "#EA7062">0x01 准备工作</font>
+
+在开始之前，需要完成以下准备工作：
+
+### <font color = "#749DD6">2.1 安装腾讯云 COS 的 Python SDK</font>
+1. 登录腾讯云：[腾讯云官网](https://cloud.tencent.com)。
+2. 创建一个 **COS 存储桶**。
+   - 进入 [对象存储页面](https://console.cloud.tencent.com/cos5)。
+   - 创建一个存储桶（选择区域、命名存储桶等）。
+   - 记下存储桶的名称（`bucket-name`）和所属地域（如 `ap-guangzhou`）。
+3. 配置存储桶的权限：
+   - **公有读私有写**：如果你希望图片可以公开访问，需设置存储桶为公有读（或 CDN 加速访问）。
+4. 获取 API 密钥：
+   - 在 [访问管理页面](https://console.cloud.tencent.com/cam/capi) 创建一个 **子用户或密钥对**。
+   - 获取的 **SecretId** 和 **SecretKey** 将用于后续的 API 调用。
+
+
+### <font color = "#749DD6">1.2 配置 Typora</font>
+1. 打开 Typora，进入设置：
+   - Windows: `文件 -> 偏好设置`。
+   - macOS: `Typora -> 偏好设置`。
+2. 进入 **图片** 设置：
+   - 勾选 **上传图片时自动将本地图片上传到图床**。
+   - 然后选择 **自定义命令** 上传。
+
+---
+
+## <font color = "#EA7062">0x02 实现图片上传到 COS</font>
+通过 Typora 的 **自定义命令**，可以编写脚本实现图片的自动上传。以下是实现步骤。
+
+### <font color = "#749DD6">2.1 安装腾讯云 COS 的 Python SDK</font>
+腾讯云提供了官方的 COS Python SDK，可以通过 pip 安装：
+
+```bash
+python3 -m pip install cos-python-sdk-v5
+```
+
+如果没有 Python 环境，请先安装 Python，并确保 `pip` 可用。
+
+---
+
+### <font color = "#749DD6">2.2 编写上传脚本</font>
+以下是一个示例 Python 脚本，用于将图片上传到腾讯云 COS。将脚本保存为 `upload_to_cos.py`。
+
+```python
+import sys
+import os
+from qcloud_cos import CosConfig
+from qcloud_cos import CosS3Client
+import logging
+
+# 打开日志记录（可选）
+logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+
+# 配置腾讯云 COS
+secret_id = 'your-secret-id'       # 替换为你的 SecretId
+secret_key = 'your-secret-key'     # 替换为你的 SecretKey
+region = 'ap-region'               # 替换为你的存储桶所在地域，例如 ap-guangzhou
+bucket_name = 'your-bucket-name'   # 替换为你的存储桶名称
+cos_domain = f'{bucket_name}.cos.{region}.myqcloud.com'  # COS 访问域名
+
+# 初始化 COS 客户端
+config = CosConfig(Region=region, SecretId=secret_id, SecretKey=secret_key)
+client = CosS3Client(config)
+
+def upload_to_cos(local_path):
+    """
+    上传文件到腾讯云 COS
+    :param local_path: 本地文件路径
+    :return: 文件的访问 URL
+    """
+    # 获取文件名
+    file_name = os.path.basename(local_path)
+    
+    # 定义存储路径，可按日期组织
+    # 例如：images/2024/11/23/filename.png
+    from datetime import datetime
+    date_path = datetime.now().strftime('%Y/%m/%d')
+    cos_path = f'images/{date_path}/{file_name}'
+    
+    # 上传文件到 COS
+    with open(local_path, 'rb') as f:
+        response = client.put_object(
+            Bucket=bucket_name,
+            Body=f,
+            Key=cos_path,
+            StorageClass='STANDARD'
+        )
+    
+    # 返回文件的访问 URL
+    file_url = f'https://{cos_domain}/{cos_path}'
+    return file_url
+
+if __name__ == '__main__':
+    # Typora 会将待上传的图片路径作为参数传递给脚本
+    if len(sys.argv) != 2:
+        print("Usage: python upload_to_cos.py <image-path>")
+        sys.exit(1)
+    
+    # 获取图片路径
+    image_path = sys.argv[1]
+    
+    # 上传图片到 COS
+    try:
+        url = upload_to_cos(image_path)
+        print(url)  # Typora 需要脚本输出图片的 URL
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+```
+
+### <font color = "#749DD6">2.3 配置 Typora 使用该脚本</font>
+1. 打开 Typora 的 **偏好设置 -> 图片**。
+2. 勾选 **上传图片时自动将本地图片上传到图床**。
+3. 选择 **自定义命令**，并输入以下命令：
+   ```bash
+   python3 /path/to/upload_to_cos.py
+   ```
+   - 将 `/path/to/upload_to_cos.py` 替换为实际的脚本路径。
+   - 如果你的系统使用的是 `python` 而非 `python3`，请将命令中的 `python3` 替换为 `python`。
+
+---

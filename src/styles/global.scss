@@ -31,6 +31,10 @@ a {
     font-size: 1.2em;
   }
 
+p {
+    font-size: 1.5rem;
+}
+
 .medium-zoom-image--opened {
   @apply rounded-xl shadow-xl;
 }
@@ -275,7 +279,8 @@ thead th {
 
 .frosti-code,
 .frosti-code span {
-  @apply text-sm;
+    font-size: 1rem; /* 14px */
+    line-height: 1.65rem; /* 20px */
   background-color: oklch(var(--b2));
 }
 
