@@ -39,14 +39,14 @@ export const menuItems = [
       {
         id: "CTF",
         text: "CTF",
-        href: "/blog/categories/tech",
+        href: "/blog/categories/CTF",
         svg: "post",
         target: "_self",
       }, // All blog
       {
         id: "HTB",
         text: "HTB",
-        href: "/blog/categories/tech",
+        href: "/blog/categories/HTB",
         svg: "cube",
         target: "_self",
       }, // Technology category
