@@ -35,6 +35,11 @@ p {
     font-size: 1.5rem;
 }
 
+br {
+    margin: 0;
+    padding: 0;
+}
+
 .medium-zoom-image--opened {
   @apply rounded-xl shadow-xl;
 }
