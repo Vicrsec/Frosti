@@ -16,8 +16,7 @@ export const ClickableDiv = ({ children }) => (
   </div>
 );
 
-
-<h4>`1、求M = {5*a, 3*b}的6- 排列的个数`</h4>
+<h4>1、求`M = {5*a, 3*b}`的6-排列的个数。</h4>
 <ClickableDiv>
 <details>
 <summary>展开答案</summary>
@@ -29,3 +28,94 @@ $\frac{6!}{5!} + \frac{6!}{4!2!} + \frac{6!}{3!3!} = 41$
 </details>
 </ClickableDiv>
 
+<h4>2、从1至100的整数中不重复地选取两个数组成有序对(x,y),使得x与y的乘积 xy不能被3整除,共可组成多少对?</h4>
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+67*66=4422
+</Success>
+</details>
+</ClickableDiv>
+
+<h4>3、有多少个能被3整除而又不含数字6的3位数?</h4>
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+
+百位有8种选法，十位有9种选法；个位上的数字进行分情况讨论：
+
+设总数除以3后的余数为d
+
+如果 d=0,则个位数选法有0，3，9三种；
+
+如果 d=1,则个位数选法有1，4，7三种；
+
+如果 d=2,则个位数选法有2，5，8三种。
+
+所以答案为`d为0的个数*3+d为1的个数*3+d为2的个数*3=（d为0的个数+d为1的个数+d为2的个数）*3 = 72*3 = 216`
+</Success>
+</details>
+</ClickableDiv>
+
+
+<h4>4、求由n(n≥2)个相异元a1,a2，···作成的a1不排在第1位,a2不排在第2位的全排列的个数</h4>
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+S = `{所有数的全排列}` = n!
+
+A = `{a1在第一位的全排列}` = (n-1)!
+
+B = `{a2在第二位的全排列}` = (n-1)!
+
+AB = `{a1在第一位且a2在第二位的全排列}` = (n-2)!
+
+$S - A\cup B = S - A - B + AB = (n^2-3n+3)(n-2)!$
+</Success>
+</details>
+</ClickableDiv>
+
+<h4>5、求由2个0、3个1和3个2作成的8位数的个数。</h4>
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+因为`{2*0, 3*1, 3*2}`的全排列有$$\frac{(2+3+3)!}{2 \times 3 \times 3!} = 560,$$
+而有一个0排第一位的方法。
+数相当于`{1*0, 3*1, 3*2}`的全排列数，
+有$$\frac{(1+3+3)!}{1 \times 3 \times 3!} = 140,$$
+所以共有这样的8位数560 - 140 = 420.
+</Success>
+</details>
+</ClickableDiv>
+
+<h4>6、求多重集`M={1·a,4·b,3·c}的6-排列的个数`</h4>
+<ClickableDiv>
+<details>
+<summary>展开答案</summary>
+<Success>
+将6-排列分成多重集: 
+$$
+\hspace*{-10cm}{\{0 \cdot a, 3 \cdot b, 3 \cdot c\}}, \\
+\hspace*{-10cm}{\{0 \cdot a, 4 \cdot b, 2 \cdot c\}}, \\
+\hspace*{-10cm}{\{1 \cdot a, 2 \cdot b, 3 \cdot c\}}, \\ 
+\hspace*{-10cm}{\{1 \cdot a, 3 \cdot b, 2 \cdot c\}}, \\ 
+\hspace*{-10cm}{\{1 \cdot a, 4 \cdot b, 1 \cdot c\}}
+
+$$
+的全排列 5 种情形。因此有：
+$$
+\frac{(3+3)!}{3! \cdot 3!} 
++ \frac{(4+2)!}{4! \cdot 2!}
++ \frac{(1+2+3)!}{1! \cdot 2! \cdot 3!} 
++ \frac{(1+3+2)!}{1! \cdot 3! \cdot 2!} 
++ \frac{(1+4+1)!}{1! \cdot 4! \cdot 1!} \\
+= 20 + 15 + 60 + 60 + 30 = 185
+$$
+
+</Success>
+</details>
+</ClickableDiv>
