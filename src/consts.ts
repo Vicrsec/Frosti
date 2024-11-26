@@ -32,28 +32,28 @@ export const menuItems = [
   {
     id: "blog",
     text: "博客",
-    href: "/blog",
+    href: "/blog/categories/网络安全",
     svg: "blog",
     target: "_self",
     subItems: [
       {
         id: "CTF",
         text: "CTF",
-        href: "/blog/categories/CTF",
+        href: "/blog/tag/CTF",
         svg: "post",
         target: "_self",
       }, // All blog
       {
         id: "HTB",
         text: "HTB",
-        href: "/blog/categories/HTB",
+        href: "/blog/tag/HTB",
         svg: "cube",
         target: "_self",
       }, // Technology category
       {
-        id: "Math",
+        id: "Tools",
         text: "工具技巧",
-        href: "/blog/categories/工具技巧",
+        href: "/blog/tag/工具技巧",
         svg: "cube",    
         target: "_self",
       }, 
@@ -62,25 +62,24 @@ export const menuItems = [
   {
     id: "Math",
     text: "数学",
-    href: "/Math",
+    href: "/blog/categories/数学",
     svg: "project",
     target: "_self",
     subItems: [
         {
             id: "Math",
             text: "数值分析",
-            href: "/blog/categories/数值分析",
+            href: "/blog/tag/数值分析",
             svg: "cube",    
             target: "_self",
-          }, // Math
+          },
           {
             id: "Math",
             text: "组合数学",
-            href: "/blog/categories/组合数学",
+            href: "/blog/tag/组合数学",
             svg: "cube",    
             target: "_self",
-          }, // Math
-
+          },
     ]
   }, // Projects page
   {
