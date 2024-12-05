@@ -3,7 +3,7 @@
 
 // Site title and description
 export const SITE_LANG = "en";
-export const SITE_TAB = "Vicrsec";
+export const SITE_TAB = "知识分享";
 export const SITE_TITLE = "Vicrsec 🗡";
 export const SITE_DESCRIPTION = "A blog for Vicrsec";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
