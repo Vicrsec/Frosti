@@ -46,7 +46,7 @@ export const menuItems = [
       {
         id: "HTB",
         text: "HTB",
-        href: "/blog/tag/HTB",
+        href: "/blog/tag/Vulhub",
         svg: "cube",
         target: "_self",
       }, // Technology category
