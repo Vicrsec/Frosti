@@ -37,15 +37,15 @@ export const menuItems = [
     target: "_self",
     subItems: [
       {
-        id: "CTF",
-        text: "CTF",
-        href: "/blog/tag/CTF",
+        id: "CTF比赛WP",
+        text: "CTF比赛WP",
+        href: "/blog/tag/CTF_WriteUp",
         svg: "post",
         target: "_self",
       }, // All blog
       {
-        id: "HTB",
-        text: "HTB",
+        id: "Vulhub",
+        text: "Vulhub",
         href: "/blog/tag/Vulhub",
         svg: "cube",
         target: "_self",
@@ -82,6 +82,36 @@ export const menuItems = [
           },
     ]
   }, // Projects page
+  {
+    id: "CTF",
+    text: "CTF",
+    href: "/blog/categories/CTF",
+    svg: "categories",
+    target: "_self",
+    subItems: [
+        {
+            id: "Web",
+            text: "Web",
+            href: "/blog/tag/Web",
+            svg: "cube",    
+            target: "_self",
+          },
+          {
+            id: "Misc",
+            text: "Misc",
+            href: "/blog/tag/Misc",
+            svg: "cube",    
+            target: "_self",
+          },
+          {
+            id: "Crypto",
+            text: "Crypto",
+            href: "/blog/tag/Crypto",
+            svg: "cube",    
+            target: "_self",
+          }
+    ]
+  },
   {
     id: "project",
     text: "项目",

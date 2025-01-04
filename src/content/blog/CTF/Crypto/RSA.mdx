@@ -1,0 +1,32 @@
+---
+title: "RSA"
+description: ""
+pubDate: "NOV 20 2024"
+image: /image/ToolUse/SSH端口转发.png
+categories:
+  - CTF
+badge: Pin
+tags: 
+  - Crypto
+---
+import Success from "../../../../components/blog/success.astro";
+
+# <font color = "#749DD6">RSA原理</font>
+
+
+$
+公钥: (E, N)  \\
+私钥：(D, N)  \\
+明文^E \% N = 密文  \\
+密文^D \% N = 明文
+$
+## <font color = "#749DD6">公私钥制作过程(5步)</font>
+1) 选2个质数: p, q
+2) 质数相乘: N = p * q
+3) 欧拉函数: phi = (p - 1) * (q - 1)
+4) 选公钥E: 选取一个质数：
+满足
+ 1. 1 < 公钥 < phi
+ 2. 不是phi的因子
+5) 计算私钥d: 使其满足(d * e) % phi = 1即可。
+## <font color = "#749DD6">Continued</font>
