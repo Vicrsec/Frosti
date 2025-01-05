@@ -13,20 +13,42 @@ import Success from "../../../../components/blog/success.astro";
 
 # <font color = "#749DD6">RSA原理</font>
 
-
 $
 公钥: (E, N)  \\
 私钥：(D, N)  \\
-明文^E \% N = 密文  \\
+明文^E \% N = 密文 \\
 密文^D \% N = 明文
 $
 ## <font color = "#749DD6">公私钥制作过程(5步)</font>
 1) 选2个质数: p, q
 2) 质数相乘: N = p * q
 3) 欧拉函数: phi = (p - 1) * (q - 1)
-4) 选公钥E: 选取一个质数：
-满足
- 1. 1 < 公钥 < phi
- 2. 不是phi的因子
+4) 选公钥E: 选取一个质数：满足
+```
+1 < 公钥 < phi
+不是phi的因子
+ ```
 5) 计算私钥d: 使其满足(d * e) % phi = 1即可。
 ## <font color = "#749DD6">Continued</font>
+
+## <font color = "#749DD6">攻击手法</font>
+
+### <font color = "#749DD6">模数攻击</font>
+1) 分解模数 <br/>
+当N比较小时，可利用factor.db网站或者yafu工具分解。
+2) 共模攻击
+$$
+\left\{
+\begin{aligned}
+c_1 = m^{e_1}\;mod\;N \\
+c_2 = m^{e_2}\;mod\;N
+\end{aligned}
+\right. \\
+$$
+
+根据贝祖定理得出
+$$
+r{e_1}\;+\;s{e_2}= 1 \; mod \; N
+$$
+
+3) 素数生成问题
