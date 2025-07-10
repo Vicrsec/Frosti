@@ -12,6 +12,13 @@ tags:
 import Success from "../../../components/blog/success.astro"; 
 
 ## 本地端口转发
+本地转发（local forwarding）指的是，创建一个本地端口，将发往该端口的所有通信都通过 SSH 服务器，转发到指定的远程服务器的端口。这种情况下，SSH 服务器只是一个作为跳板的中介，用于连接本地计算机无法直接连接的远程服务器。本地转发是在本地计算机建立的转发规则。
+
+### 需求
+现在有一台 SSH 服务器tunnel-host，我们想要通过这台机器，在本地2121端口与目标网站www.example.com的80端口之间建立 SSH 隧道，就可以写成下面这样。
+<Success>ssh -NTL 2121:www.example.com:80 tunnel-host -N</Success>
+
+## 远程端口转发
 
 ### 需求
 我现在有一台有代理功能的主机和一台无代理功能的云端VPS，我的想法是让VPS的流量能够通过我的主机走代理。
@@ -27,7 +34,7 @@ user: root
 目的：将远端VPS的10005端口映射到本机10005端口。
 
 1、在本地主机上执行：
-<Success>ssh -R 10005:localhost:10005 -p 29998 root@1.2.3.4</Success>
+<Success>ssh -NTR 10005:localhost:10005 -p 29998 root@1.2.3.4</Success>
 
 2、在VPS上执行：
 <Success>proxychains4 curl http://www.google.com</Success>
